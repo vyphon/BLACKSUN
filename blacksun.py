@@ -32,7 +32,7 @@ designed to interrupt, destroy or limit the functionality of any
 computer software or hardware or telecommunications equipment;
 '''
 
-def yesOrNO():
+def yes_no():
 	try:
 		return (raw_input("Continue [Y/n]: ") in 'y', 'Y')
 	except NameError:
@@ -58,8 +58,7 @@ class main_BlackSun:
 	def __init__(self):
 		ClearScreen()
 		blackSunPrompt()
-		session = 1
-		while session == 1:
+		while True:
 			try:
 				choice = raw_input(blackSun_CLIPrompt)
 			except NameError:
@@ -92,6 +91,9 @@ class main_BlackSun:
 				# sniffingSpoofingMenu()
 				pass
 			elif choice == "10":
+				# informationGatheringMenu()
+				pass
+			elif choice == "11":
 				self.credMenu()
 			else:
 				main_BlackSun()
@@ -116,10 +118,16 @@ class main_BlackSun:
 		except NameError:
 			choice = input(blackSun_CLIPrompt)
 		if choice == "1":
-			main_BlackSun()
+			self.__init__()
 		else:
 			self.credMenu()
-			
+
+
+
+
+
+
+
 
 def blackSunPrompt():
 	print('''            ________________________________ _____________  ______   __
@@ -137,8 +145,107 @@ def blackSunPrompt():
  > [ 7 ]:  Password Attacks
  > [ 8 ]:  Wireless Hacking
  > [ 9 ]:  Sniffing & Spoofing
- > [ 10 ]: Credits and Mentions
+ > [ 10 ]: Information Gathering
+ > [ 11 ]: Credits and Mentions
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -''')
+
+
+
+
+
+
+
+
+def informationGatheringPrompt():
+	print('''       __________   _________________ 
+       /_  _/__  | / /__  ____/_  __ \
+        / / __   |/ /__  /_   _  / / /
+      _/ /  _  /|  / _  __/   / /_/ / 
+     /___/  /_/ |_/  /_/      \\____/  
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ > [ 1 ]: Get Site Headers
+ > [ 2 ]: Ping
+ > [ 3 ]: Port Scan
+ > [ 4 ]: DNS Lookup
+ > [ 5 ]: Reverse DNS 
+ > [ 6 ]: Host to IP
+ > [ 7 ]: NMAP
+ > [ 8 ]: XSStrike
+ > [ 9 ]: SEToolkit
+ > [ 10 ]: WPScan
+ > [ 11 ]: Main Menu
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -''')
+
+
+
+
+
+
+
+
+class informationGatheringMenu():
+	def __init__(self):
+		try:
+			choice = raw_input(blackSun_CLIPrompt)
+		except NameError:
+			choice = input(blackSun_CLIPrompt)
+		if choice == "1":
+			sendHEAD()
+		elif choice == "2":
+			
+		elif choice == "3":
+			pass
+		elif choice == "4":
+			pass
+		elif choice == "5":
+			pass
+		elif choice == "6":
+			pass
+		elif choice == "7":
+			pass
+		elif choice == "8":
+			pass
+		elif choice == "9":
+			pass
+		elif choice == "10":
+			pass
+		elif choice == "11":
+			pass
+		else:
+			self.__init__()
+
+
+
+
+
+
+def ping(): # using system-installed ping because I am lazy and don't feel like making my own with socket ¯\_(ツ)_/¯
+	ClearScreen()
+	try:
+		host_IP = raw_input("Enter the IP Address to ping: ")
+	except NameError:
+		host_IP = input("Enter the IP Address to ping: ")
+	try:
+		indefinitePing = raw_input("Would you like to ping indefinitely? [Y/n]: ")
+	except NameError:
+		indefinitePing = input("Would you like to ping indefinitely? [Y/n]: ")
+	if "y" in indefinitePing or "y" in indefinitePing:
+		os.system('ping {} -4 -t'.format(host_IP))
+	else:
+		os.system('ping {} -4'.format(host_IP))
+
+
+
+def sendHEAD():
+	ClearScreen()
+	try:
+		host_IP = raw_input("Enter the IP Address of the domain to send the HEAD request: ")
+	except NameError:
+		host_IP = input("Enter the IP Address of the domain to send the HEAD request: ")
+	ClearScreen()
+	os.system('curl {} -I'.format(host_IP))
+
+
 
 if __name__ == "__main__":
 	try:
