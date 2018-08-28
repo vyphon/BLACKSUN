@@ -1,3 +1,4 @@
+# WORK IN PROGRESS
 import socket
 try: # <- to determine which httplib to use for Python version.
 	import http.client 
